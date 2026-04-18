@@ -1,9 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
