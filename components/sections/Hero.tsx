@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { buildWhatsAppUrl } from '@/lib/constants'
 import Button from '@/components/ui/Button'
 import { GLSLHills } from '@/components/ui/glsl-hills'
@@ -9,6 +9,9 @@ const heroMessage =
   'Olá! Vim pelo site da Medrix e gostaria de solicitar um diagnóstico gratuito. 🚀'
 
 export default function Hero() {
+  const { scrollY } = useScroll()
+  const scrollIndicatorOpacity = useTransform(scrollY, [0, 200], [1, 0])
+
   const scrollToServices = () => {
     document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -99,8 +102,9 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
+        style={{ opacity: scrollIndicatorOpacity }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

@@ -146,7 +146,20 @@ const InteractiveNeuralVortex = () => {
       animationRef.current = requestAnimationFrame(render)
     }
 
-    render()
+    const startRender = () => {
+      if (!animationRef.current) animationRef.current = requestAnimationFrame(render)
+    }
+    const stopRender = () => {
+      cancelAnimationFrame(animationRef.current)
+      animationRef.current = 0
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { entry.isIntersecting ? startRender() : stopRender() },
+      { threshold: 0 }
+    )
+    observer.observe(canvasEl)
+    startRender()
 
     const handlePointerMove = (e: PointerEvent) => {
       pointer.current.tX = e.clientX
@@ -163,6 +176,7 @@ const InteractiveNeuralVortex = () => {
     window.addEventListener('touchmove', handleTouchMove)
 
     return () => {
+      observer.disconnect()
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('pointermove', handlePointerMove)
       window.removeEventListener('touchmove', handleTouchMove)

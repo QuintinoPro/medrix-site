@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     'social media',
     'performance',
   ],
+  metadataBase: new URL('https://medrix.com.br'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Medrix | Conteúdo que posiciona. Estratégia que converte.',
     description:
@@ -36,6 +40,22 @@ export const metadata: Metadata = {
     siteName: 'Medrix',
     locale: 'pt_BR',
     type: 'website',
+    url: 'https://medrix.com.br',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Medrix — Conteúdo que posiciona. Estratégia que converte.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Medrix | Conteúdo que posiciona. Estratégia que converte.',
+    description:
+      'A Medrix une audiovisual, tráfego pago e estratégia para transformar sua presença digital em resultado real.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

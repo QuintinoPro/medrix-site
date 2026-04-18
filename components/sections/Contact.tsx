@@ -25,6 +25,7 @@ export default function Contact() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -138,7 +139,7 @@ export default function Contact() {
                   retorno em até 24 horas.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => { setSubmitted(false); reset() }}
                   className="text-xs text-text-muted hover:text-white underline transition-colors cursor-pointer mt-2"
                 >
                   Enviar outra mensagem

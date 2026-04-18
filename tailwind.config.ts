@@ -17,7 +17,7 @@ const config: Config = {
         'accent-light': '#A78BFA',
         'text-primary': '#FFFFFF',
         'text-secondary': '#A0A0A0',
-        'text-muted': '#666666',
+        'text-muted': '#888888',
       },
       fontFamily: {
         heading: ['var(--font-syne)', 'sans-serif'],

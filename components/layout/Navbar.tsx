@@ -14,11 +14,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
     setMenuOpen(false)
     const el = document.querySelector(href)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      const navbarHeight = window.innerWidth >= 768 ? 80 : 64
+      const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight
+      window.scrollTo({ top, behavior: 'smooth' })
     }
   }
 
@@ -47,13 +55,14 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8">
               {NAV_LINKS.map((link) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-sm text-text-secondary hover:text-white transition-colors duration-200 font-body tracking-wide cursor-pointer"
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-sm text-text-secondary hover:text-white transition-colors duration-200 font-body tracking-wide focus:outline-none focus-visible:text-white"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
             </nav>
 
@@ -106,16 +115,17 @@ export default function Navbar() {
           >
             <nav className="flex flex-col items-center gap-8">
               {NAV_LINKS.map((link, i) => (
-                <motion.button
+                <motion.a
                   key={link.href}
+                  href={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07 }}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-2xl font-heading font-bold text-white hover:text-accent-light transition-colors cursor-pointer"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-2xl font-heading font-bold text-white hover:text-accent-light transition-colors focus:outline-none focus-visible:text-accent-light"
                 >
                   {link.label}
-                </motion.button>
+                </motion.a>
               ))}
               <motion.a
                 initial={{ opacity: 0, y: 20 }}

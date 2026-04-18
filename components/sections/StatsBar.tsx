@@ -18,9 +18,11 @@ function StatItem({
   inView: boolean
 }) {
   const [count, setCount] = useState(0)
+  const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (!inView) return
+    if (!inView || hasAnimated.current) return
+    hasAnimated.current = true
     const duration = 2000
     const steps = 60
     const increment = value / steps
@@ -56,7 +58,7 @@ export default function StatsBar() {
   const inView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <section ref={ref} className="bg-surface border-y border-border py-10">
+    <section id="stats" ref={ref} className="bg-surface border-y border-border py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
