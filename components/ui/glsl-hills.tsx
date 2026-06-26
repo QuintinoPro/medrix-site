@@ -176,9 +176,9 @@ const GLSLHills = ({
       1,
       10000
     )
-    const clock = new THREE.Clock()
     const plane = new Plane()
     let animFrameId: number
+    let lastTime = performance.now()
 
     const resize = () => {
       if (!canvasRef.current) return
@@ -188,7 +188,10 @@ const GLSLHills = ({
     }
 
     const renderLoop = () => {
-      plane.render(clock.getDelta())
+      const now = performance.now()
+      const delta = (now - lastTime) / 1000
+      lastTime = now
+      plane.render(delta)
       renderer.render(scene, camera)
       animFrameId = requestAnimationFrame(renderLoop)
     }

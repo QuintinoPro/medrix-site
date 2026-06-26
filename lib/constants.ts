@@ -84,7 +84,7 @@ export const DIFFERENTIALS = [
 export const STATS = [
   { value: 50, prefix: '+', suffix: '', label: 'Clientes Atendidos' },
   { value: 200, prefix: '+', suffix: '', label: 'Vídeos Produzidos' },
-  { value: 2, prefix: '+R$', suffix: 'M', label: 'Faturamento Gerado' },
+  { value: null, prefix: '', suffix: '', label: 'Todos os Nichos Atendidos' },
   { value: 3, prefix: '', suffix: '', label: 'Anos de Experiência' },
 ]
 
@@ -113,21 +113,6 @@ export const PROCESS_STEPS = [
     description:
       'Analisamos resultados, otimizamos continuamente e escalamos o que funciona. Crescimento não é sorte, é processo.',
   },
-]
-
-export const IMPACT_PHRASES = [
-  'Postar não é estratégia.',
-  'Tráfego sem posicionamento é dinheiro perdido.',
-  'Conteúdo sem direção não converte.',
-  'Não é sobre aparecer. É sobre ser escolhido.',
-]
-
-// Adicione aqui os links dos posts/reels do Instagram da Medrix
-// Ex: 'https://www.instagram.com/reel/CODIGO_DO_REEL/'
-export const INSTAGRAM_WORKS: { url: string; label: string }[] = [
-  { url: 'https://www.instagram.com/reel/COLOQUE_O_LINK_1/', label: 'Case 01' },
-  { url: 'https://www.instagram.com/reel/COLOQUE_O_LINK_2/', label: 'Case 02' },
-  { url: 'https://www.instagram.com/reel/COLOQUE_O_LINK_3/', label: 'Case 03' },
 ]
 
 export const SERVICE_OPTIONS = [

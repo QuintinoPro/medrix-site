@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, HTMLAttributes } from 'react'
+import Image from 'next/image'
 
 const cn = (...classes: (string | undefined | null | false)[]) =>
   classes.filter(Boolean).join(' ')
@@ -121,12 +122,13 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                 }}
               >
                 <div className="relative w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 bg-surface">
-                  <img
+                  <Image
                     src={item.photo.url}
                     alt={item.photo.text}
+                    fill
+                    unoptimized
                     draggable={false}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectPosition: item.photo.pos || 'center' }}
+                    style={{ objectFit: 'cover', objectPosition: item.photo.pos || 'center' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 w-full p-4 text-white">

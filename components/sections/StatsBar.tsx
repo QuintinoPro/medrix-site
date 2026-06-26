@@ -11,7 +11,7 @@ function StatItem({
   label,
   inView,
 }: {
-  value: number
+  value: number | null
   prefix: string
   suffix: string
   label: string
@@ -21,7 +21,7 @@ function StatItem({
   const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (!inView || hasAnimated.current) return
+    if (value === null || !inView || hasAnimated.current) return
     hasAnimated.current = true
     const duration = 2000
     const steps = 60
@@ -42,9 +42,7 @@ function StatItem({
   return (
     <div className="flex flex-col items-center text-center px-6 py-4">
       <p className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">
-        {prefix}
-        {count}
-        {suffix}
+        {value !== null ? `${prefix}${count}${suffix}` : '∞'}
       </p>
       <p className="text-xs text-text-secondary tracking-wide uppercase font-body">
         {label}

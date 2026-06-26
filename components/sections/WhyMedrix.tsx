@@ -35,21 +35,22 @@ export default function WhyMedrix() {
             <motion.div
               key={item.title}
               variants={fadeInUp}
-              className="group flex gap-4 bg-surface border-l-2 border-l-accent/30 hover:border-l-accent border border-border rounded-xl p-6 transition-all duration-300"
+              className="group flex gap-5 items-start bg-surface border border-border hover:border-accent/50 rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
             >
-              {/* Icon */}
-              <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-200">
+              {/* Naked icon with glow halo */}
+              <div className="relative flex-shrink-0 w-fit">
+                <div className="absolute -inset-2 rounded-full bg-accent/25 blur-xl group-hover:bg-accent/40 transition-all duration-500" />
                 <Image
                   src={DIFF_ICON_MAP[item.icon]}
                   alt={item.title}
-                  width={44}
-                  height={44}
-                  className="object-contain"
+                  width={68}
+                  height={68}
+                  className="relative object-contain drop-shadow-[0_4px_18px_rgba(139,92,246,0.45)] group-hover:scale-110 transition-transform duration-300 ease-out"
                 />
               </div>
 
               {/* Text */}
-              <div>
+              <div className="pt-1">
                 <h3 className="font-heading font-bold text-white mb-1 group-hover:text-accent-light transition-colors duration-200">
                   {item.title}
                 </h3>

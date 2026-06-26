@@ -133,13 +133,16 @@ export default function Services() {
               className="group relative bg-background border border-border hover:border-accent/50 rounded-xl p-6 lg:p-8 transition-colors duration-300 hover:shadow-lg hover:shadow-accent/10 flex-shrink-0"
               style={{ width: 'clamp(280px, 30vw, 380px)' }}
             >
-              <div className="mb-5">
+              {/* Naked icon with glow halo */}
+              <div className="mb-6 relative w-fit">
+                {/* Soft radial glow behind the icon */}
+                <div className="absolute -inset-3 rounded-full bg-accent/25 blur-2xl scale-100 group-hover:bg-accent/40 group-hover:scale-110 transition-all duration-500" />
                 <Image
                   src={SERVICE_ICON_MAP[service.icon]}
                   alt={service.title}
-                  width={52}
-                  height={52}
-                  className="object-contain pointer-events-none"
+                  width={76}
+                  height={76}
+                  className="relative object-contain pointer-events-none drop-shadow-[0_4px_20px_rgba(139,92,246,0.45)] group-hover:scale-110 transition-transform duration-300 ease-out"
                   draggable={false}
                 />
               </div>

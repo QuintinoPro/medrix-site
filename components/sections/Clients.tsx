@@ -1,22 +1,20 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeIn } from '@/lib/animations'
 import { Sparkles } from '@/components/ui/sparkles'
 
-const CLIENT_PLACEHOLDERS = [
-  'Cliente 01',
-  'Cliente 02',
-  'Cliente 03',
-  'Cliente 04',
-  'Cliente 05',
-  'Cliente 06',
+const CLIENTS = [
+  { src: '/images/clients/stocks.png', alt: 'Stocks' },
+  { src: '/images/clients/zain.jpeg', alt: 'Zaín Tricologia Avançada' },
+  { src: '/images/clients/assistencia.png', alt: 'World Pax — Assistência Familiar & Bem-Estar' },
+  { src: '/images/clients/dr-eric-aguiar.png', alt: 'Dr. Éric Aguiar — Tricologia Médica e Transplante Capilar' },
 ]
 
 export default function Clients() {
   return (
     <section id="clientes" className="relative py-20 lg:py-28 bg-background overflow-hidden">
-      {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,39 +33,31 @@ export default function Clients() {
           <div className="mt-6 h-px w-24 bg-gradient-to-r from-accent/50 to-transparent mx-auto" />
         </motion.div>
 
-        {/* Logo Grid */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+          className="flex flex-wrap justify-center gap-6"
         >
-          {CLIENT_PLACEHOLDERS.map((client) => (
+          {CLIENTS.map((client) => (
             <motion.div
-              key={client}
+              key={client.alt}
               variants={fadeIn}
-              className="group h-20 bg-surface border border-border hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300"
+              className="group relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(131,80,232,0.15)]"
             >
-              <span className="text-text-muted group-hover:text-text-secondary text-xs font-heading font-bold tracking-widest transition-colors duration-200">
-                {client}
-              </span>
+              <Image
+                src={client.src}
+                alt={client.alt}
+                fill
+                sizes="192px"
+                className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              />
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-6 text-xs text-text-muted"
-        >
-          * Logos dos clientes serão adicionados em breve.
-        </motion.p>
       </div>
 
-      {/* Sparkles bottom glow */}
       <div className="relative -mt-20 h-72 w-full overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)]">
         <div className="absolute inset-0 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,#8350e8,transparent_70%)] before:opacity-30" />
         <div className="absolute -left-1/2 top-1/2 aspect-[1/0.7] z-10 w-[200%] rounded-[100%] border-t border-white/5 bg-background" />

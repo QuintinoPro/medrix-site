@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_LINKS, buildWhatsAppUrl, WHATSAPP_DEFAULT_MESSAGE } from '@/lib/constants'
 
@@ -46,10 +47,18 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <a
-              href="#"
-              className="font-heading font-bold text-xl tracking-widest text-white hover:text-accent-light transition-colors"
+              href="/"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+              aria-label="Medrix — página inicial"
             >
-              MEDRIX
+              <Image
+                src="/images/logo/logo-transparente.png"
+                alt="Medrix"
+                width={56}
+                height={56}
+                className="h-12 w-12 object-contain"
+                priority
+              />
             </a>
 
             {/* Desktop Nav */}
@@ -82,8 +91,9 @@ export default function Navbar() {
               {/* Hamburger */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="md:hidden flex flex-col gap-1.5 w-6 cursor-pointer"
-                aria-label="Abrir menu"
+                className="md:hidden flex flex-col gap-1.5 w-6 p-1 -m-1 cursor-pointer rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+                aria-expanded={menuOpen}
               >
                 <motion.span
                   animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}

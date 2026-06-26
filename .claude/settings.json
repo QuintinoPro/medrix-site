@@ -4,10 +4,22 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)",
       "Bash(npx next *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" status)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" log --oneline -5)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" remote -v)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" add app/layout.tsx app/sitemap.ts components/layout/Navbar.tsx components/sections/Clients.tsx components/sections/Contact.tsx components/sections/Hero.tsx components/sections/Services.tsx components/sections/StatsBar.tsx components/ui/interactive-neural-vortex-background.tsx next.config.ts tailwind.config.ts tsconfig.json public/robots.txt)",
+      "Bash(git -C 'd:/CLIENTES - STOCKS/medrix/SITE' commit -m ' *)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" push origin master)",
+      "Bash(npm run *)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" add next.config.ts app/sitemap.ts .github/workflows/deploy.yml)",
+      "Bash(gh run *)",
+      "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" add next.config.ts)",
+      "Bash(git -C 'd:/CLIENTES - STOCKS/medrix/SITE' commit -m 'fix: adicionar basePath e assetPrefix para GitHub Pages *)"
     ],
     "additionalDirectories": [
-      "d:\\CLIENTES - STOCKS\\medrix\\SITE - MEDRIX\\ICONES"
+      "d:\\CLIENTES - STOCKS\\medrix\\SITE - MEDRIX\\ICONES",
+      "e:\\OBSIDIAN - BRAIN\\Dev\\Projetos"
     ]
   }
 }
