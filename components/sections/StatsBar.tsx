@@ -62,7 +62,7 @@ export default function StatsBar() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border"
+          className="grid grid-cols-2 lg:grid-cols-4 [&>*]:border-border [&>*:nth-child(even)]:border-l lg:[&>*:nth-child(odd)]:border-l lg:[&>*:nth-child(4n+1)]:border-l-0"
         >
           {STATS.map((stat) => (
             <StatItem key={stat.label} {...stat} inView={inView} />

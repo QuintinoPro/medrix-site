@@ -103,7 +103,7 @@ export default function Works() {
       </div>
 
       <div className="relative z-10 w-full mt-10" style={{ height: '520px' }}>
-        <CircularGallery items={WORKS} radius={520} autoRotateSpeed={0.018} className="w-full h-full" />
+        <CircularGallery items={WORKS} radius={410} autoRotateSpeed={0.018} className="w-full h-full" />
       </div>
     </section>
   )

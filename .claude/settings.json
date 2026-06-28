@@ -15,7 +15,8 @@
       "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" add next.config.ts app/sitemap.ts .github/workflows/deploy.yml)",
       "Bash(gh run *)",
       "Bash(git -C \"d:/CLIENTES - STOCKS/medrix/SITE\" add next.config.ts)",
-      "Bash(git -C 'd:/CLIENTES - STOCKS/medrix/SITE' commit -m 'fix: adicionar basePath e assetPrefix para GitHub Pages *)"
+      "Bash(git -C 'd:/CLIENTES - STOCKS/medrix/SITE' commit -m 'fix: adicionar basePath e assetPrefix para GitHub Pages *)",
+      "Bash(node scripts/build-og.mjs)"
     ],
     "additionalDirectories": [
       "d:\\CLIENTES - STOCKS\\medrix\\SITE - MEDRIX\\ICONES",

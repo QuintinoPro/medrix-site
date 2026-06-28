@@ -49,7 +49,7 @@ export default function Services() {
         // apply momentum after drag
         if (Math.abs(velocityRef.current) > 0.1) {
           posRef.current += velocityRef.current
-          velocityRef.current *= 0.95
+          velocityRef.current *= 0.96
         } else {
           velocityRef.current = 0
           posRef.current += SPEED
@@ -125,7 +125,7 @@ export default function Services() {
         <div
           ref={trackRef}
           className="flex gap-5 will-change-transform select-none"
-          style={{ width: 'max-content', cursor: 'grab' }}
+          style={{ width: 'max-content', cursor: 'grab', touchAction: 'pan-y' }}
         >
           {DUPLICATED.map((service, i) => (
             <div

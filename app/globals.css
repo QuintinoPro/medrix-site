@@ -11,6 +11,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Safety net against horizontal overflow from full-bleed decorative elements.
+     `clip` (not `hidden`) keeps position: sticky/fixed working. */
+  overflow-x: clip;
 }
 
 /* Reduced-motion safety net: kill smooth scroll, CSS animations and transitions

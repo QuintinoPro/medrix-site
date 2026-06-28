@@ -34,6 +34,20 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
     const rafRef = useRef<number | null>(null)
     const containerRef = useRef<HTMLDivElement | null>(null)
 
+    // Drag sensitivity (deg per px). Higher = lighter / easier to spin.
+    const DRAG = 0.26
+
+    // Pull the cards closer together on smaller screens (smaller radius =
+    // tighter cylinder). `radius` prop is the desktop value.
+    const [viewW, setViewW] = useState(1280)
+    useEffect(() => {
+      const update = () => setViewW(window.innerWidth)
+      update()
+      window.addEventListener('resize', update)
+      return () => window.removeEventListener('resize', update)
+    }, [])
+    const effRadius = viewW < 640 ? 300 : viewW < 1024 ? 360 : radius
+
     useEffect(() => {
       const tick = () => {
         if (!isDragging.current) {
@@ -68,11 +82,11 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
       const now = performance.now()
       const dt = now - lastDragTime.current
       const dx = e.clientX - lastX.current
-      if (dt > 0) velocityRef.current = (dx / dt) * 16 * 0.12
+      if (dt > 0) velocityRef.current = (dx / dt) * 16 * DRAG
       lastX.current = e.clientX
       lastDragX.current = e.clientX
       lastDragTime.current = now
-      rotationRef.current += dx * 0.12
+      rotationRef.current += dx * DRAG
     }
 
     const onPointerUp = () => {
@@ -89,7 +103,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
           else if (ref) ref.current = node
         }}
         className={cn('relative w-full h-full flex items-center justify-center select-none', className)}
-        style={{ perspective: '2000px', cursor: isDragging.current ? 'grabbing' : 'grab' }}
+        style={{ perspective: '2000px', cursor: isDragging.current ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -112,7 +126,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                 key={`${item.title}-${i}`}
                 className="absolute w-[260px] h-[360px] pointer-events-none"
                 style={{
-                  transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
+                  transform: `rotateY(${itemAngle}deg) translateZ(${effRadius}px)`,
                   left: '50%',
                   top: '50%',
                   marginLeft: '-130px',
