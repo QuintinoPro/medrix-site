@@ -37,8 +37,10 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
     // Drag sensitivity (deg per px). Higher = lighter / easier to spin.
     const DRAG = 0.26
 
-    // Pull the cards closer together on smaller screens (smaller radius =
-    // tighter cylinder). `radius` prop is the desktop value.
+    // Tighten the cylinder a bit on smaller screens, but never below the
+    // overlap threshold: cards are 260px wide and the chord between adjacent
+    // cards is ~0.765*radius, so radius must stay >~340 to avoid them colliding.
+    // `radius` prop is the desktop value.
     const [viewW, setViewW] = useState(1280)
     useEffect(() => {
       const update = () => setViewW(window.innerWidth)
@@ -46,7 +48,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
       window.addEventListener('resize', update)
       return () => window.removeEventListener('resize', update)
     }, [])
-    const effRadius = viewW < 640 ? 300 : viewW < 1024 ? 360 : radius
+    const effRadius = viewW < 640 ? 390 : viewW < 1024 ? 400 : radius
 
     useEffect(() => {
       const tick = () => {
