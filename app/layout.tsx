@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'social media',
     'performance',
   ],
-  metadataBase: new URL('https://medrix.com.br'),
+  metadataBase: new URL('https://agenciamedrix.com.br'),
   alternates: {
     canonical: '/',
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Medrix',
     locale: 'pt_BR',
     type: 'website',
-    url: 'https://medrix.com.br',
+    url: 'https://agenciamedrix.com.br',
     images: [
       {
         url: '/og-image.png',

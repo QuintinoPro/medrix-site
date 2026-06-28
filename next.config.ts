@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next'
 
-const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
-const basePath = isGitHubActions ? '/medrix-site' : ''
+// Served from the apex custom domain (agenciamedrix.com.br) at the root,
+// so no basePath. The github.io/medrix-site URL auto-redirects to the domain.
+const basePath = ''
 
 const nextConfig: NextConfig = {
   output: 'export',
